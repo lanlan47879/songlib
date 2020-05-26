@@ -9,7 +9,7 @@ def cli():
 
 @cli.command()
 @click.argument('songname', required=True)
-@click.argument('mat_type', type=click.Choice(['chart', 'video']), required=True)
+@click.argument('mat_type', type=click.Choice(['tab', 'video']), required=True)
 @click.argument('mat_title', required=True)
 @click.argument('mat_source', required=True)
 def add(songname, mat_type, mat_title, mat_source):
@@ -23,12 +23,12 @@ def add(songname, mat_type, mat_title, mat_source):
 
 @cli.command()
 @click.argument('songname', required=True)
-@click.option('--chart', '-c', is_flag=True, help='Opens a chart for this song.')
+@click.option('--tab', '-t', is_flag=True, help='Opens a tab for this song.')
 @click.option('--video', '-v', is_flag=True, help='Opens a video for this song.')
-def mats(songname, chart, video):
+def mats(songname, tab, video):
     """ Opens materials for the specified song. """
-    if chart:
-        helper.open_spec_mat(songname, 'chart')
+    if tab:
+        helper.open_spec_mat(songname, 'tab')
     elif video:
         helper.open_spec_mat(songname, 'video')
     else:
@@ -36,12 +36,12 @@ def mats(songname, chart, video):
 
 @cli.command()
 @click.argument('songname', required=True)
-@click.option('--chart', '-c', is_flag=True, help='Removes a chart from this song.')
+@click.option('--tab', '-t', is_flag=True, help='Removes a tab from this song.')
 @click.option('--video', '-v', is_flag=True, help='Removes a video from this song.')
-def rm(songname, chart, video):
+def rm(songname, tab, video):
     """ Removes materials for the specified song. """
-    if chart:
-        helper.rm_spec_helper(songname, 'chart')
+    if tab:
+        helper.rm_spec_helper(songname, 'tab')
     elif video:
         helper.rm_spec_helper(songname, 'video')
     else:

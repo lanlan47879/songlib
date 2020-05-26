@@ -23,7 +23,7 @@ def get_curr_song(songname, songs):
     return song
 
 def get_materials(song, mat_type):
-    materials = song['charts'] if mat_type == 'chart' else song['videos']
+    materials = song['tabs'] if mat_type == 'tab' else song['videos']
     return materials
 
 def init(songname="", mat_type=""):
@@ -92,25 +92,25 @@ def open_all_mats(songname):
     if not song:
         raise click.ClickException('Currently \'{}\' does not exist in your library.'.format(songname.title()))
 
-    charts, videos = get_materials(song, 'chart'), get_materials(song, 'video')
-    chart_cnt, video_cnt = len(charts), len(videos)
+    tabs, videos = get_materials(song, 'tab'), get_materials(song, 'video')
+    tab_cnt, video_cnt = len(tabs), len(videos)
 
-    if not charts and videos:
-        click.echo('Currently no charts for \'{}.\' Opening just the video(s).'.format(songname.title()))
+    if not tabs and videos:
+        click.echo('Currently no tabs for \'{}.\' Opening just the video(s).'.format(songname.title()))
         open_spec_mat(songname, 'video')
         return
-    elif not videos and charts:
-        click.echo('Currently no videos for \'{}.\' Opening just the chart(s).'.format(songname.title()))
-        open_spec_mat(songname, 'chart')
+    elif not videos and tabs:
+        click.echo('Currently no videos for \'{}.\' Opening just the tab(s).'.format(songname.title()))
+        open_spec_mat(songname, 'tab')
         return
-    elif not charts and not videos:
-        raise click.ClickException('Currently no charts or videos for \'{}.\''.format(songname.title()))
+    elif not tabs and not videos:
+        raise click.ClickException('Currently no tabs or videos for \'{}.\''.format(songname.title()))
 
     action = 'view'
-    chart_choice = 0 if chart_cnt == 1 else get_mat_choice(songname, 'chart', action)
+    tab_choice = 0 if tab_cnt == 1 else get_mat_choice(songname, 'tab', action)
     video_choice = 0 if video_cnt == 1 else get_mat_choice(songname, 'video', action)
 
-    click.launch(charts[chart_choice]['source'])
+    click.launch(tabs[tab_choice]['source'])
     click.launch(videos[video_choice]['source'])
 
 def add_helper(songname, mat_type, mat_title, mat_source):
@@ -122,9 +122,9 @@ def add_helper(songname, mat_type, mat_title, mat_source):
     mat = {"title": mat_title, "source": mat_source}
 
     if not song:
-        charts = [mat] if mat_type == 'chart' else []
+        tabs = [mat] if mat_type == 'tab' else []
         videos = [mat] if mat_type == 'video' else []
-        entry = {"name": songname, "charts": charts, "videos": videos}
+        entry = {"name": songname, "tabs": tabs, "videos": videos}
 
         songs.append(entry)
     else:
@@ -136,7 +136,7 @@ def add_helper(songname, mat_type, mat_title, mat_source):
         if dupe_title:
             raise click.ClickException('Source with the title provided already exists for \'{}.\''.format(songname.title()))
 
-        song['charts'].append(mat) if mat_type == 'chart' else song['videos'].append(mat)
+        song['tabs'].append(mat) if mat_type == 'tab' else song['videos'].append(mat)
 
     with click.open_file(SONGFILE, 'w') as f:
         f.seek(0)
@@ -173,7 +173,7 @@ def rm_spec_helper(songname, mat_type):
     mat = next((mat for mat in materials if mat['title'] == title), None)
     materials.remove(mat)
 
-    if not song['charts'] and not song['videos']:
+    if not song['tabs'] and not song['videos']:
         songs.remove(song)
 
     with click.open_file(SONGFILE, 'w') as f:

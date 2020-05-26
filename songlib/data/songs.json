@@ -2,7 +2,7 @@
     "songs": [
         {
             "name": "your song",
-            "charts": [
+            "tabs": [
                 {
                     "title": "PDF",
                     "source": "/Users/alanacquinones/Documents/uke/your_song.pdf"
@@ -17,7 +17,7 @@
         },
         {
             "name": "banana pancakes",
-            "charts": [
+            "tabs": [
                 {
                     "title": "PDF",
                     "source": "/Users/alanacquinones/Documents/uke/banana_pancakes.pdf"
@@ -32,7 +32,7 @@
         },
         {
             "name": "build me up buttercup",
-            "charts": [
+            "tabs": [
                 {
                     "title": "PDF",
                     "source": "/Users/alanacquinones/Documents/uke/build_me_up_buttercup.pdf"
