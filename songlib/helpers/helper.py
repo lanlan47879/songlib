@@ -2,16 +2,18 @@ import click
 import validators
 import json
 import os.path
+import sys
 
-ROOT = os.path.dirname(os.path.dirname(__file__))
-FILEPATH = os.path.abspath('data/songs.json')
-SONGFILE = os.path.join(ROOT, FILEPATH)
+ROOT = os.path.join(os.path.expanduser('~'), '.songlib')
+SONGFILE = os.path.join(ROOT, 'songs.json')
 
 def startup():
     exists = os.path.exists(SONGFILE)
     if not exists:
         init = {"songs": []}
-        with click.open_file(SONGFILE, 'w') as f:
+
+        os.makedirs(ROOT)
+        with click.open_file(SONGFILE, 'w+') as f:
             json.dump(init, f, indent=4)
 
 def get_song_dump():
