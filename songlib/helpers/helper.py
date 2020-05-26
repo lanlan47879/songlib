@@ -3,7 +3,9 @@ import validators
 import json
 import os.path
 
-SONGFILE = 'songlib/data/songs.json'
+ROOT = os.path.dirname(os.path.dirname(__file__))
+FILEPATH = os.path.abspath('data/songs.json')
+SONGFILE = os.path.join(ROOT, FILEPATH)
 
 def startup():
     exists = os.path.exists(SONGFILE)
