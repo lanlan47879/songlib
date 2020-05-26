@@ -10,9 +10,7 @@ This is mostly for personal use so I only have support for adding tabs and video
 specific song, which is what I use, but I might add support for different types of materials at some point.
 
 ## Installation
-* Clone or download repo
-* cd into repo directory
-* Run `pip3 install .`
+I haven't figured out how to upload this to PyPi so for now I just have this installed by running `pip3 install .` in the repo directory.
 
 ## Usage
 * [Adding materials](#add-materials-to-songs)
