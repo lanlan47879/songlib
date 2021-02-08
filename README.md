@@ -2,9 +2,8 @@
 A small CLI that provides easy access to study materials for songs you're learning.
 
 ## Background
-I started learning to play the ukulele a couple months ago and got tired of hunting down 
-all my song tabs and videos everything time I wanted to practice a song. And I figured this would be
-a good example to get a bit more familiar with Python and JSON.
+I wanted to become familiar with both Python and JSON. I also started learning to play the ukulele a couple months ago and got tired of hunting down 
+all my song tabs and videos everything time I wanted to practice a song. I figured this would be a quick and easy project to combine both interests.
 
 This is mostly for personal use so I only have support for adding tabs and videos to a
 specific song, which is what I use, but I might add support for different types of materials at some point.
